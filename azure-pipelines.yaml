@@ -46,7 +46,7 @@ stages:
             targetType: 'inline'
             script: |
               # Write your commands here
-              echo RUN IMAGE SCAN
+              docker scout quickview backend:$(Build.SourceVersion)
   - stage: publish
     jobs:
       - job : pushImage
