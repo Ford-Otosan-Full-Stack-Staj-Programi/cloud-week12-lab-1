@@ -40,8 +40,8 @@ stages:
             targetType: 'inline'
             script: |
               # Write your commands here
-              docker scout quickview backend:$(Build.SourceVersion)
-              docker scout cves backend:$(Build.SourceVersion)
+              docker scout quickview erhansiraci/backend:$(Build.SourceVersion)
+              docker scout cves erhansiraci/backend:$(Build.SourceVersion)
 
   - stage: publish
     jobs:
