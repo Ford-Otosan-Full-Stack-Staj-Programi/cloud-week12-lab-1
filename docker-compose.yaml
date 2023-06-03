@@ -2,10 +2,17 @@ version: "3"
 
 services:
   backend:
-    build: ./backend
-    # image: backend:latest
+    # build: ./backend
+    image: backend:latest
     ports:
       - 80:80
+    networks:
+      - vNet
+  frontend:
+    # build: ./frontend
+    image: erhansiraci/frontend:latest
+    ports:
+      - 8080:80
     networks:
       - vNet
   redis:
