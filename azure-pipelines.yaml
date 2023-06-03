@@ -78,4 +78,4 @@ stages:
               export FRONTEND=$(Build.SourceVersion)
               export REDIS_PASSWORD=123456ex
               export REDIS_CONNECTION_STRING=cloud-week12-lab-1-redis-1:6379,password=123456ex
-              docker compose up -d
+              docker compose up --project-name=cloud-week12-lab-1 -d
