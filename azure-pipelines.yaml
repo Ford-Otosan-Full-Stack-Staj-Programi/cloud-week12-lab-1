@@ -11,8 +11,18 @@ stages:
             repository: 'erhansiraci/backend'
             command: 'build'
             Dockerfile: './backend/Dockerfile'
-            tags: $(Build.SourceVersion)
             buildContext: './backend'
+            tags: '$(Build.SourceVersion)'
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'dh-erhansiraci'
+            repository: 'erhansiraci/frontend'
+            command: 'build'
+            Dockerfile: './frontend/Dockerfile'
+            buildContext: './frontend'
+            tags: '$(Build.SourceVersion)'
+
+
   - stage: test
     jobs:
       - job : unitTest
@@ -42,7 +52,8 @@ stages:
               # Write your commands here
               docker scout quickview erhansiraci/backend:$(Build.SourceVersion)
               docker scout cves erhansiraci/backend:$(Build.SourceVersion)
-
+              docker scout quickview erhansiraci/frontend:$(Build.SourceVersion)
+              docker scout cves erhansiraci/frontend:$(Build.SourceVersion)
   - stage: publish
     jobs:
       - job : pushImage
@@ -53,6 +64,7 @@ stages:
             script: |
               # Write your commands here
               docker push erhansiraci/backend:$(Build.SourceVersion)
+              docker push erhansiraci/frontend:$(Build.SourceVersion)
   - stage: deploy
     jobs:
       - job : deployInt
@@ -64,3 +76,4 @@ stages:
               # Write your commands here
               echo RUN DEPLOY to INT
               docker run -d -p80:80 erhansiraci/backend:$(Build.SourceVersion)
+              docker run -d -p8080:80 erhansiraci/frontend:$(Build.SourceVersion)
