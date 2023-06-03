@@ -8,6 +8,8 @@ services:
       - 80:80
     networks:
       - vNet
+    environment:
+    - REDIS_CONNECTION_STRING=${REDIS_CONNECTION_STRING}
   frontend:
     # build: ./frontend
     image: "erhansiraci/frontend:${FRONTEND}"
@@ -19,7 +21,7 @@ services:
     image: redis
     ports:
       - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass 123456ex
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     networks:
       - vNet
 networks:
