@@ -75,5 +75,4 @@ stages:
             script: |
               # Write your commands here
               echo RUN DEPLOY to INT
-              docker run -d -p80:80 erhansiraci/backend:$(Build.SourceVersion)
-              docker run -d -p8080:80 erhansiraci/frontend:$(Build.SourceVersion)
+              docker compose up -d
