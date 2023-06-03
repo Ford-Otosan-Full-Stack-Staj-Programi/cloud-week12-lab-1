@@ -5,12 +5,19 @@ stages:
     jobs:
       - job : build
         steps:
-        - task: Bash@3
+        # - task: Bash@3
+        #   inputs:
+        #     targetType: 'inline'
+        #     script: |
+        #       # Write your commands here
+        #       docker build -t backend:latest backend -f ./backend/Dockerfile
+        - task: Docker@2
           inputs:
-            targetType: 'inline'
-            script: |
-              # Write your commands here
-              docker build -t backend:latest backend -f ./backend/Dockerfile
+            containerRegistry: 'dh-erhansiraci'
+            repository: 'backend'
+            command: 'build'
+            Dockerfile: './backend/Dockerfile'
+            buildContext: './backend'
   - stage: test
     jobs:
       - job : unitTest
