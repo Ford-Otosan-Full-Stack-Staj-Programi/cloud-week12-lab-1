@@ -1,0 +1,63 @@
+pool: eran-mbpr
+
+stages:
+  - stage: build
+    jobs:
+      - job : build
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your commands here
+              echo RUN BUILD
+  - stage: test
+    jobs:
+      - job : unitTest
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your commands here
+              echo RUN UNIT TEST
+      - job : staticCodeAnalysis
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your commands here
+              echo RUN STATIC CODE ANALYSIS              
+  - stage: securityCheck
+    jobs:
+      - job : scanImage
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your commands here
+              echo RUN IMAGE SCAN
+  - stage: publish
+    jobs:
+      - job : pushImage
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your commands here
+              echo RUN IMAGE PUSH              
+  - stage: deploy
+    jobs:
+      - job : deployInt
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              # Write your commands here
+              echo RUN DEPLOY to INT
+              # ll
+              # docker compose up -d --build
