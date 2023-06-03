@@ -17,6 +17,7 @@ stages:
             repository: 'backend'
             command: 'build'
             Dockerfile: './backend/Dockerfile'
+            tags: $(Build.SourceVersion)
             buildContext: './backend'
   - stage: test
     jobs:
