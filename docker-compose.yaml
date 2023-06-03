@@ -3,14 +3,14 @@ version: "3"
 services:
   backend:
     # build: ./backend
-    image: backend:latest
+    image: "erhansiraci/backend:${BACKEND}"
     ports:
       - 80:80
     networks:
       - vNet
   frontend:
     # build: ./frontend
-    image: erhansiraci/frontend:latest
+    image: "erhansiraci/frontend:${FRONTEND}"
     ports:
       - 8080:80
     networks:
