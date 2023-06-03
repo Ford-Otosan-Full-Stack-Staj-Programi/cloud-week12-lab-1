@@ -75,4 +75,6 @@ stages:
             script: |
               # Write your commands here
               echo RUN DEPLOY to INT
+              export BACKEND=$(Build.SourceVersion)
+              export FRONTEND=$(Build.SourceVersion)
               docker compose up -d
