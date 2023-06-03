@@ -10,7 +10,7 @@ stages:
             targetType: 'inline'
             script: |
               # Write your commands here
-              echo RUN BUILD
+              docker build -t backend:latest backend -f ./backend/Dockerfile
   - stage: test
     jobs:
       - job : unitTest
