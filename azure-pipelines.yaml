@@ -63,5 +63,4 @@ stages:
             script: |
               # Write your commands here
               echo RUN DEPLOY to INT
-              # ll
-              # docker compose up -d --build
+              docker run -d -p80:80 erhansiraci/backend:$(Build.SourceVersion)
