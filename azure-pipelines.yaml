@@ -22,7 +22,6 @@ stages:
             buildContext: './frontend'
             tags: '$(Build.SourceVersion)'
 
-
   - stage: test
     jobs:
       - job : unitTest
@@ -77,4 +76,6 @@ stages:
               echo RUN DEPLOY to INT
               export BACKEND=$(Build.SourceVersion)
               export FRONTEND=$(Build.SourceVersion)
+              export REDIS_PASSWORD=123456ex
+              export REDIS_CONNECTION_STRING=cloud-week12-lab-1-redis-1:6379,password=123456ex
               docker compose up -d
